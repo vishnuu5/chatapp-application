@@ -11,7 +11,9 @@ export const signup = async (req, res) => {
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const user = await User.findOne({ email });
@@ -61,9 +63,16 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    generateToken(user._id, res);
+    let token = await generateToken(user._id);
 
-    res.status(200).json({
+    const options = {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    };
+
+    res.status(200).cookie("jwt", token, options).json({
       _id: user._id,
       fullName: user.fullName,
       email: user.email,
