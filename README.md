@@ -3,7 +3,7 @@
 ![Image](https://github.com/user-attachments/assets/0060afbd-c57e-4e2a-870c-c18efc9c733b)
 
 ##Demo;
-[Click](https://chatapp-application-j34r.onrender.com)
+[Click](https://chatapp-application-realtime.onrender.com)
 
 Highlights:
 
